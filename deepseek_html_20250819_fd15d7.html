@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xoxobazar.com - Global B2B Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #FF6A00;
+            --secondary: #0052CC;
+            --dark: #172B4D;
+            --light: #F4F5F7;
+            --gray: #7A869A;
+            --success: #36B37E;
+            --warning: #FFAB00;
+            --danger: #FF5630;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e55b00;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .top-bar {
+            background-color: var(--dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .top-bar-links a {
+            margin-left: 15px;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-action-item {
+            margin-left: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .header-action-item i {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .categories {
+            position: relative;
+        }
+        
+        .categories-btn {
+            padding: 12px 20px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .categories-btn i {
+            margin-right: 10px;
+        }
+        
+        .categories-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 250px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            display: none;
+        }
+        
+        .categories:hover .categories-dropdown {
+            display: block;
+        }
+        
+        .category-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .category-item:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .category-item i {
+            margin-right: 10px;
+            color: var(--gray);
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-link {
+            padding: 12px 15px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Featured Categories */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-icon {
+            background-color: var(--light);
+            padding: 25px 0;
+            font-size: 40px;
+            color: var(--primary);
+        }
+        
+        .category-name {
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        /* Featured Products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+            height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .product-supplier {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Vendor Showcase */
+        .vendors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .vendor-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .vendor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .vendor-header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px;
+        }
+        
+        .vendor-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: white;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--secondary);
+        }
+        
+        .vendor-info {
+            padding: 20px;
+        }
+        
+        .vendor-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--gray);
+        }
+        
+        /* Become Vendor Section */
+        .vendor-cta {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .vendor-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .vendor-cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #999;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .categories {
+                width: 100%;
+            }
+            
+            .categories-dropdown {
+                width: 100%;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+            }
+            
+            .search-bar {
+                margin: 15px 0;
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .vendor-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-bar-links">
+                <a href="#"><i class="fas fa-headset"></i> Customer Support</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Help Center</a>
+            </div>
+            <div class="top-bar-links">
+                <a href="#">Become a Seller</a>
+                <a href="#">Sign In</a>
+                <a href="#">Join Free</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="container main-header">
+            <div class="logo">Xoxo<span>bazar</span></div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products, suppliers, categories...">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+            
+            <div class="header-actions">
+                <div class="header-action-item">
+                    <i class="fas fa-globe"></i>
+                    <span>English</span>
+                </div>
+                <div class="header-action-item">
+                    <i class="fas fa-user"></i>
+                    <span>Account</span>
+                </div>
+                <div class="header-action-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="categories">
+                <div class="categories-btn">
+                    <i class="fas fa-bars"></i>
+                    <span>All Categories</span>
+                </div>
+                <div class="categories-dropdown">
+                    <div class="category-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Electronics</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-tshirt"></i>
+                        <span>Apparel</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Machinery</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-home"></i>
+                        <span>Home & Garden</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>Beauty & Health</span>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-car"></i>
+                        <span>Automotive</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Products</a>
+                <a href="#" class="nav-link">Suppliers</a>
+                <a href="#" class="nav-link">Trade Shows</a>
+                <a href="#" class="nav-link">Buyer Central</a>
+                <a href="#" class="nav-link">Seller Central</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Source from Suppliers Worldwide</h1>
+            <p>Find quality manufacturers, suppliers, exporters, and importers on our global B2B trade platform</p>
+            <a href="#" class="btn btn-primary">Start Sourcing Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="container">
+        <h2 class="section-title">Popular Categories</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="category-name">Electronics</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="category-name">Apparel</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="category-name">Machinery</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="category-name">Home & Garden</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="category-name">Beauty & Health</div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="category-name">Automotive</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wireless Earbuds">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Wireless Bluetooth Earbuds with Charging Case</div>
+                    <div class="product-supplier">Shenzhen Electronics Co.</div>
+                    <div class="product-price">$12.80 - $15.50 / piece</div>
+                    <div class="product-meta">
+                        <span>Min. order: 100 pieces</span>
+                        <span>3 yrs warranty</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Smart Watch">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Smart Watch with Heart Rate Monitor</div>
+                    <div class="product-supplier">Guangdong Tech Ltd.</div>
+                    <div class="product-price">$18.90 - $22.50 / piece</div>
+                    <div class="product-meta">
+                        <span>Min. order: 50 pieces</span>
+                        <span>2 yrs warranty</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Water Bottle">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Stainless Steel Insulated Water Bottle</div>
+                    <div class="product-supplier">Zhejiang Houseware Inc.</div>
+                    <div class="product-price">$6.50 - $8.20 / piece</div>
+                    <div class="product-meta">
+                        <span>Min. order: 200 pieces</span>
+                        <span>MOQ available</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Headphones">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Wireless Noise Cancelling Headphones</div>
+                    <div class="product-supplier">Dongguan Audio Tech</div>
+                    <div class="product-price">$25.00 - $30.00 / piece</div>
+                    <div class="product-meta">
+                        <span>Min. order: 100 pieces</span>
+                        <span>1 yr warranty</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Vendors -->
+    <section class="container">
+        <h2 class="section-title">Featured Suppliers</h2>
+        <div class="vendors-grid">
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <div class="vendor-logo">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Global Electronics Ltd.</h3>
+                </div>
+                <div class="vendor-info">
+                    <p>Supplier of consumer electronics with 10+ years experience</p>
+                    <div class="vendor-stats">
+                        <div class="stat">
+                            <div class="stat-value">4.8</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Response Rate</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">5 yrs</div>
+                            <div class="stat-label">On Platform</div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-outline">View Store</a>
+                </div>
+            </div>
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <div class="vendor-logo">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Fashion Source International</h3>
+                </div>
+                <div class="vendor-info">
+                    <p>Leading apparel manufacturer with OEM services</p>
+                    <div class="vendor-stats">
+                        <div class="stat">
+                            <div class="stat-value">4.7</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">95%</div>
+                            <div class="stat-label">Response Rate</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">8 yrs</div>
+                            <div class="stat-label">On Platform</div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-outline">View Store</a>
+                </div>
+            </div>
+            <div class="vendor-card">
+                <div class="vendor-header">
+                    <div class="vendor-logo">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Precision Machinery Co.</h3>
+                </div>
+                <div class="vendor-info">
+                    <p>Industrial equipment and machinery manufacturer</p>
+                    <div class="vendor-stats">
+                        <div class="stat">
+                            <div class="stat-value">4.9</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">99%</div>
+                            <div class="stat-label">Response Rate</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">12 yrs</div>
+                            <div class="stat-label">On Platform</div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-outline">View Store</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Become a Vendor Section -->
+    <section class="vendor-cta">
+        <div class="container">
+            <h2>Ready to Grow Your Business?</h2>
+            <p>Join thousands of suppliers who are growing their business with our global trade platform. Reach millions of buyers worldwide and increase your sales.</p>
+            <a href="#" class="btn btn-outline">Become a Supplier</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Xoxobazar</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Site Map</a></li>
+                        <li><a href="#">How to Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Buyers</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">How to Find Products</a></li>
+                        <li><a href="#">Request for Quotation</a></li>
+                        <li><a href="#">Manage Orders</a></li>
+                        <li><a href="#">Payment Protection</a></li>
+                        <li><a href="#">Buyer Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>For Suppliers</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Membership Plans</a></li>
+                        <li><a href="#">How to Sell</a></li>
+                        <li><a href="#">Supplier Dashboard</a></li>
+                        <li><a href="#">Trade Assurance</a></li>
+                        <li><a href="#">Advertising Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Submit a Complaint</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Xoxobazar.com Global B2B Marketplace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle categories dropdown on mobile
+            const categoriesBtn = document.querySelector('.categories-btn');
+            const categoriesDropdown = document.querySelector('.categories-dropdown');
+            
+            categoriesBtn.addEventListener('click', function() {
+                if (window.innerWidth < 992) {
+                    categoriesDropdown.style.display = 
+                        categoriesDropdown.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+            
+            // Product card hover effect for touch devices
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.classList.add('hover');
+                }, {passive: true});
+            });
+
+            // Simulate loading products (in a real app, this would be an API call)
+            setTimeout(() => {
+                const loadingElement = document.querySelector('.loading-products');
+                if (loadingElement) {
+                    loadingElement.style.display = 'none';
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
